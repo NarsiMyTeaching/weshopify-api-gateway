@@ -1,0 +1,27 @@
+spring: 
+ application: 
+  name: weshopify-api-gateway
+ cloud: 
+  gateway: 
+   discovery: 
+     locator: 
+       enabled: true
+       lower-case-service-id: false
+   routes: 
+    - id: WESHOPIFY-BRANDS-SERVICE
+      uri: lb://WESHOPIFY-BRANDS-SERVICE
+      predicates: 
+       - Path= /api/gateway/brands/**
+      filters: 
+       - RewritePath=/api/gateway/brands/(?<segment>.*),/${segment}
+    - id: WESHOPIFY-CATEGORIES-SERVICE
+      uri: lb://WESHOPIFY-CATEGORIES-SERVICE
+      predicates: 
+       - Path= /api/gateway/cats/**
+      
+      filters:
+       - RewritePath=/api/gateway/cats/(?<segment>.*),/${segment}
+server: 
+ port: 5005
+  
+   
