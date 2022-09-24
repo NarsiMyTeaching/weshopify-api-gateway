@@ -1,8 +1,11 @@
 spring: 
  application: 
   name: weshopify-api-gateway
+ #main: 
+  #allow-bean-definition-overriding: true  
  cloud: 
-  gateway: 
+  gateway:
+   
    discovery: 
      locator: 
        enabled: true
@@ -21,7 +24,23 @@ spring:
       
       filters:
        - RewritePath=/api/gateway/cats/(?<segment>.*),/${segment}
+       
+    - id: WESHOPIFY-AUTHN-SERVICE
+      uri: lb://WESHOPIFY-AUTHN-SERVICE
+      predicates: 
+       - Path= /api/security/**
+      
+      filters:
+       - RewritePath=/api/security/(?<segment>.*),/${segment}
 server: 
  port: 5005
+
+eureka: 
+ instance: 
+    preferIpAddress: true
+    
+
+ 
+ 
   
    
