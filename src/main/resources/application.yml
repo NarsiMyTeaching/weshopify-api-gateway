@@ -3,6 +3,10 @@ spring:
   name: weshopify-api-gateway
  #main: 
   #allow-bean-definition-overriding: true  
+ redis:
+    host: 13.214.221.98
+    port: 6379
+    
  cloud: 
   gateway:
    
@@ -10,6 +14,7 @@ spring:
      locator: 
        enabled: true
        lower-case-service-id: false
+ 
    routes: 
     - id: WESHOPIFY-BRANDS-SERVICE
       uri: lb://WESHOPIFY-BRANDS-SERVICE

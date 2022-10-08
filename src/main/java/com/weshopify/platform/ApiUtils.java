@@ -9,5 +9,6 @@ public interface ApiUtils {
 	String JWT_TOKEN_PREFIX = "Bearer";
 	String JWT_TOKEN_TYPE = "Bearer";
 	
-	List<String> allowedUrlsList = Arrays.asList("/authn","/validate-token");
+	//List<String> allowedUrlsList = Arrays.asList("/authn","/validate-token");
+	List<String> allowedUrlsList = Arrays.asList("/authn","/iam-authn");
 }
